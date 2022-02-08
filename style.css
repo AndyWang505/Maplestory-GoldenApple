@@ -1,0 +1,112 @@
+body{
+    background-image: url(/images/maxresdefault.jpg);
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+}
+.flex{
+    display: flex;
+}
+h5{
+    margin-right: 15px;
+}
+h6{
+    margin: 0;
+}
+header{
+    margin-bottom: 35px;
+}
+.wrap{
+    margin: auto;
+    max-width: 1200px;
+}
+header img{
+    width: 50%;
+}
+.apple1{
+    width: 16%;
+}
+.apple2{
+    width: 32%;
+}
+.prize{
+    border-radius: 5px;
+    width: 100%;
+    height: 350px;
+    overflow-y: auto;
+    padding: 0px 8px 0px 8px;
+    border: 2px solid #b4b4b4;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+#prize::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #ffc0cb;
+  }
+#prize::-webkit-scrollbar {
+    width: 8px;
+    background-color: black;
+  }
+#prize::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #bb6573;
+}
+.amount{
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #b4b4b4;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: rgb(230, 230, 230);
+    font-weight: bold;
+}
+.appleBigprizeText{
+    background-color: rgb(228, 228, 39);
+    margin: 0;
+}
+.appleText{
+    color: rgb(177, 177, 177);
+    margin: 0;
+}
+.goldboxText{
+    color: rgb(185, 180, 223);
+    margin: 0;
+}
+.blackchipsText{
+    color: rgb(230, 230, 230);
+    margin: 0;
+}
+.textPrize{
+    color: rgb(194, 125, 255);
+    font-weight: bold;
+}
+.btn{
+    margin-top: 15px;
+}
+.formImg{
+    width: 50px;
+    height: 50px;
+}
+/* Phone */
+@media screen and (min-width:300px) and (max-width:900px) {
+	header{
+        margin: 0;
+    }
+    h5{
+        font-size: 16px;
+    }
+    header img{
+        width: 100%;
+    }
+    .apple1{
+        display: none;
+    }
+    .apple2{
+        display: none;
+    }
+    .formImg{
+        width: 25px;
+        height: 25px;
+    }
+    .bgm{
+        display: none;
+    }
+}

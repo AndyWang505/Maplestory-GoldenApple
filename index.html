@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黃金蘋果模擬器</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <img src="/images/dm.jpg" alt="">
+            <img class="apple1" src="/images/apple.jpg" alt="">
+            <img class="apple2" src="/images/apple2.jpg" alt="">
+        </header>
+        <main>
+            <div class="form">
+                <button class="btn btn-warning" id="buyBtn"><i class="bi bi-cart3"></i>購買一組</button>
+                <button class="btn btn-warning" id="goldboxBtn">兌換幸運的金色箱子1個 ( 消耗碎片100 )</button>
+                <div class="amount">
+                    <div class="flex">
+                        <div>
+                            <h5><img class="formImg" src="/images/apple_img.jpg" alt="">：<label id="apples">0</label></h5>
+                        </div>
+                        <div>
+                            <h5><img class="formImg" src="/images/applechip.jpg" alt="">：<label id="appleChips">0</label></h5>
+                        </div>
+                        <div>
+                            <h5><img class="formImg" src="/images/goldbox.jpg" alt="">：<label id="goldBox">0</label></h5>
+                        </div>
+                        <div>
+                            <h5><img class="formImg" src="/images/blackchip.jpg" alt="">：<label id="blackChips">0</label></h5>
+                        </div>
+                        <div>
+                            <h5><img class="formImg" src="/images/FrenzyTotem.jpg" alt="">：<label id="FrenzyTotem">0</label></h5>
+                        </div>
+                    </div>
+                    <h6>累計第<label id="count">0</label>抽 ; 第<label id="boxCount">0</label>個金箱</h6>
+                </div>
+                <button class="btn btn-danger" id="openBtn">開抽蘋果</button>
+                <button class="btn btn-danger" id="openboxBtn">開抽金箱</button>
+                <button class="btn btn-danger" id="blackchipBtn">兌換漆黑的BOSS飾品  ( 消耗碎片50 )</button>
+            </div>
+            <div class="prize" id="prize" tabindex="-1">
+                <!-- 廣頻 -->
+            </div>
+        </main>
+    </div>
+    <!-- BGM : https://www.youtube.com/watch?v=xtVCiy99OMY&ab_channel=SlipySlidy -->
+    <audio class="bgm" src="/[MapleStory BGM] Grand Athenaeum Evening Primrose.mp3" autoplay controls loop="true"></audio>
+    <script type="text/javascript" src="/script.js"></script>
+    <script type="text/javascript" src="/prizeData.json"></script>
+</body>
+</html>
