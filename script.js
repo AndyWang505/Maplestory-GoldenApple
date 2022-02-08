@@ -92,30 +92,33 @@ openBtn.addEventListener("click", () => {
             // console.log("最後獎勵為：" + superbigPrize.name);
             prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${superbigPrize.name}</span>。</h6>`;
             alert("恭喜從黃金蘋果機獲得【輪迴碑石】！");
-        }else if(probability <= 111){
+        }else if(probability <= 117){
             //睿智葫蘆1.11%
             gourd += 1;
             // console.log("最後獎勵為：" + verybigPrize.name);
             prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${verybigPrize.name}</span>。</h6>`;
-        }else if(probability <= 691){
+        }else if(probability <= 808){
             //漆黑碎片(1) 6.91%
             blackChips += 1;
             // console.log("最後獎勵為：" + normalbigPrize.name);
             prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${normalbigPrize.name}</span>。</h6>`;
         }else if(probability <= 964){
             //上廣獎 9.64% 採用 普通皮皮計算上廣機率https://www.youtube.com/watch?v=al8tnzHBBo0&ab_channel=%E6%99%AE%E9%80%9A%E7%9A%AE%E7%9A%AE
-            let normalP = Math.round(Math.random() * bigPrize.length)-1;
+            let bigPrizeLength = bigPrize.length-1;
+            let normalP = Math.round(Math.random() * bigPrizeLength);
             // console.log(normalP);
             // console.log("最後獎勵為：" + bigPrize[normalP].name);
             prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${bigPrize[normalP].name}</span>。</h6>`;
-        }else if(probability <= 3000){
+        }else if(probability <= 3964){
             //小獎 30% 航海師裝備
-            let smallP2  = Math.round(Math.random() * smallPrize2.length)-1;
+            let smallPrize2Length = bigPrize.length-1;
+            let smallP2  = Math.round(Math.random() * smallPrize2Length);
             // console.log("最後獎勵為：" + smallPrize2[smallP2].name);
             prizeText.innerHTML += `<h6 class="appleText" id="Id${textId+=1}">已獲得<span class="textPrize">${smallPrize2[smallP2].name}</span> 道具1個。</h6>`;
         }else{
             //一般獎勵
-            let smallP  = Math.round(Math.random() * smallPrize.length)-1;
+            let smallPrizeLength = smallPrize.length-1;
+            let smallP  = Math.round(Math.random() * smallPrizeLength);
             // console.log("最後獎勵為：" + smallPrize[smallP].name);
             prizeText.innerHTML += `<h6 class="appleText" id="Id${textId+=1}">已獲得<span class="textPrize">${smallPrize[smallP].name}</span> 道具1個。</h6>`;
         }
@@ -151,7 +154,8 @@ openboxBtn.addEventListener("click", () => {
             prizeText.innerHTML += `<h6 class="goldboxText" id="Id${textId+=1}">恭喜"你"從幸運的金色箱子機獲得<span class="textPrize">【${superbigPrize.name}】</span>。</h6>`;
             alert("恭喜從黃金蘋果機獲得【輪迴碑石】！");
         }else{
-            let goldboxP = Math.round(Math.random() * bigPrize.length)-1;
+            let goldboxPrizeLength = goldboxPrize.length-1
+            let goldboxP = Math.round(Math.random() * goldboxPrizeLength);
             if(goldboxPrize[goldboxP].name == "漆黑的Boss飾品碎片(10)"){
                 blackChips += 10;
             }else if(goldboxPrize[goldboxP].name == "漆黑的Boss飾品碎片(15)"){
@@ -166,6 +170,7 @@ openboxBtn.addEventListener("click", () => {
         goldBox -= 1;
         blackchipsText.innerHTML = blackChips;
         boxcountText.innerHTML = boxCount;
+        goldboxText.innerHTML = goldBox;
         gourdText.innerHTML = gourd;
         frenzytotemText.innerHTML = frenzyTotem;
         removeText();
@@ -178,7 +183,8 @@ blackchipBtn.addEventListener("click", () => {
     }else{
         //漆黑的boss飾品機率相同，取隨機
         blackChips -= 50;
-        let blackchipsP = Math.round(Math.random() * blackchipsPrize.length)-1;
+        let blackchipsPLength = blackchipsPrize.length-1
+        let blackchipsP = Math.round(Math.random() * blackchipsPLength);
         // console.log("漆黑飾品獎勵為：" + blackchipsPrize[blackchipsP].name);
         prizeText.innerHTML += `<h6 class="blackchipsText" id="Id${textId+=1}">從漆黑的BOSS飾品碎片中獲得<span class="textPrize">${blackchipsPrize[blackchipsP].name}</span>了。</h6>`;
         removeText();
