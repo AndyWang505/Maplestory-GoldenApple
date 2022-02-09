@@ -50,7 +50,7 @@ header img{
     border-radius: 5px;
     background-color: #bb6573;
 }
-.amount{
+.props{
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #b4b4b4;
@@ -87,9 +87,6 @@ header img{
 }
 /* Phone */
 @media screen and (min-width:300px) and (max-width:900px) {
-	header{
-        margin: 0;
-    }
     h5{
         font-size: 16px;
     }
@@ -103,10 +100,16 @@ header img{
         display: none;
     }
     .formImg{
-        width: 25px;
-        height: 25px;
+        width: 20px;
+        height: 20px;
     }
     .bgm{
         display: none;
+    }
+    .btn{
+        font-size: 12px;
+    }
+    .prize{
+        max-height: 250px;
     }
 }

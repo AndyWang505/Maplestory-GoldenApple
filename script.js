@@ -4,6 +4,7 @@ const buyBtn = document.getElementById("buyBtn"),
     openBtn = document.getElementById("openBtn"),
     openboxBtn = document.getElementById("openboxBtn"),
     blackchipBtn = document.getElementById("blackchipBtn"),
+    /* --Props Label-- */
     applesText = document.getElementById("apples"),
     applechipsText = document.getElementById("appleChips"),
     blackchipsText = document.getElementById("blackChips"),
@@ -12,6 +13,18 @@ const buyBtn = document.getElementById("buyBtn"),
     gourdText = document.getElementById("gourd"),
     countText = document.getElementById("count"),
     boxcountText = document.getElementById("boxCount"),
+    blackchips1Text = document.getElementById("blackchips1"),
+    blackchips2Text = document.getElementById("blackchips2"),
+    blackchips3Text = document.getElementById("blackchips3"),
+    blackchips4Text = document.getElementById("blackchips4"),
+    blackchips5Text = document.getElementById("blackchips5"),
+    blackchips6Text = document.getElementById("blackchips6"),
+    blackchips7Text = document.getElementById("blackchips7"),
+    blackchips8Text = document.getElementById("blackchips8"),
+    blackchips9Text = document.getElementById("blackchips9"),
+    blackchips10Text = document.getElementById("blackchips10"),
+    spendText = document.getElementById("spend"),
+    /* --廣頻-- */
     prizeText = document.getElementById("prize");
 
 //variable
@@ -32,7 +45,20 @@ let apples = 0,
     superbigPrize = {},//輪迴碑石
     goldboxPrize = [],//幸運的金色箱子
     blackchipsPrize = [],//漆黑的BOSS飾品
-    textId = 0;
+    textId = 0,//移除捲軸溢出標籤的id
+    spend = 0,//蘋果購買花費
+    /* --漆黑飾品數-- */
+    blackchips1 = 0,
+    blackchips2 = 0,
+    blackchips3 = 0,
+    blackchips4 = 0,
+    blackchips5 = 0,
+    blackchips6 = 0,
+    blackchips7 = 0,
+    blackchips8 = 0,
+    blackchips9 = 0,
+    blackchips10 = 0;
+
 
 //載入後優先取得json
 window.onload = () => {
@@ -65,15 +91,15 @@ let getJSON = () => {
 
 //使滾動條焦點在底部
 function scrollBar(){
-    for(let i=0;i<10;i++){
-        prizeText.scrollIntoView(false);
-    }
+    prizeText.scrollTop = prizeText.scrollHeight;
 }
 
 buyBtn.addEventListener("click", () => {
-    apples += 35
-    console.log("買了 "+apples+" 個蘋果")
+    apples += 35;
+    spend += 1890;
+    // console.log("買了 "+apples+" 個蘋果");
     applesText.innerHTML = apples;
+    spendText.innerHTML = spend;
 });
 openBtn.addEventListener("click", () => {
     if(apples === 0){
@@ -96,7 +122,7 @@ openBtn.addEventListener("click", () => {
             //睿智葫蘆1.11%
             gourd += 1;
             // console.log("最後獎勵為：" + verybigPrize.name);
-            prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${verybigPrize.name}</span>。</h6>`;
+            prizeText.innerHTML += `<h6 class="appleText" id="Id${textId+=1}">已獲得<span class="textPrize">${verybigPrize.name}</span> 道具1個。</h6>`;
         }else if(probability <= 808){
             //漆黑碎片(1) 6.91%
             blackChips += 1;
@@ -185,12 +211,58 @@ blackchipBtn.addEventListener("click", () => {
         blackChips -= 50;
         let blackchipsPLength = blackchipsPrize.length-1
         let blackchipsP = Math.round(Math.random() * blackchipsPLength);
+        switch(blackchipsPrize[blackchipsP].name){
+            case "口紅控制器標誌":
+                blackchips1 += 1;
+                break;
+            case "附有魔力的眼罩":
+                blackchips2 += 1;
+                break;
+            case "夢幻的腰帶":
+                blackchips3 += 1;
+                break;
+            case "苦痛的根源":
+                blackchips4 += 1;
+                break;
+            case "巨大的恐怖":
+                blackchips5 += 1;
+                break;
+            case "指揮官力量耳環":
+                blackchips6 += 1;
+                break;
+            case "受詛咒的黃魔導書":
+                blackchips7 += 1;
+                break;
+            case "受詛咒的赤魔導書":
+                blackchips8 += 1;
+                break;
+            case "受詛咒的綠魔導書":
+                blackchips9 += 1;
+                break;
+            case "受詛咒的青魔導書":
+                blackchips10 += 1;
+                break
+            default:
+                console.log("不符合")
+                break;
+        }
         // console.log("漆黑飾品獎勵為：" + blackchipsPrize[blackchipsP].name);
         prizeText.innerHTML += `<h6 class="blackchipsText" id="Id${textId+=1}">從漆黑的BOSS飾品碎片中獲得<span class="textPrize">${blackchipsPrize[blackchipsP].name}</span>了。</h6>`;
         removeText();
         scrollBar();
     }
     blackchipsText.innerHTML = blackChips;
+    /* 漆黑飾品 */
+    blackchips1Text.innerHTML = blackchips1;
+    blackchips2Text.innerHTML = blackchips2;
+    blackchips3Text.innerHTML = blackchips3;
+    blackchips4Text.innerHTML = blackchips4;
+    blackchips5Text.innerHTML = blackchips5;
+    blackchips6Text.innerHTML = blackchips6;
+    blackchips7Text.innerHTML = blackchips7;
+    blackchips8Text.innerHTML = blackchips8;
+    blackchips9Text.innerHTML = blackchips9;
+    blackchips10Text.innerHTML = blackchips10;
 });
 //捲軸範圍超過scrollHeight時移除溢出的標籤
 function removeText(){
