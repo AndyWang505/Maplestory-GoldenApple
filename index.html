@@ -13,7 +13,7 @@
 <body>
     <div class="wrap">
         <header>
-            <img src="./images/dm.jpg" alt="">
+            <img class="dm" src="./images/dm.jpg" alt="">
             <img class="apple1" src="./images/apple.jpg" alt="">
             <img class="apple2" src="./images/apple2.jpg" alt="">
         </header>
@@ -76,9 +76,17 @@
                     </div>
                     <h6>累計第<label id="count">0</label>抽 ; 第<label id="boxCount">0</label>個金箱 ; 蘋果購買花費<label id="spend">0</label>$</h6>
                 </div>
-                <button class="btn btn-danger" id="openBtn">開抽蘋果</button>
-                <button class="btn btn-danger" id="openboxBtn">開抽金箱</button>
-                <button class="btn btn-danger" id="blackchipBtn">兌換漆黑的BOSS飾品  ( 消耗碎片50 )</button>
+                <div class="flex-space-between">
+                    <div>
+                        <button class="btn btn-danger" id="openBtn">開抽蘋果</button>
+                        <button class="btn btn-danger" id="openboxBtn">開抽金箱</button>
+                        <button class="btn btn-danger" id="blackchipBtn">兌換漆黑的BOSS飾品  ( 消耗碎片50 )</button>
+                    </div>
+                    <div>
+                        <button class="btn btn-danger" id="drawallBtn">一鍵水溝</button>
+                        <button class="btn btn-danger" id="resetBtn">重置</button>
+                    </div>
+                </div>
             </div>
             <div class="prize" id="prize" tabindex="-1">
                 <!-- 廣頻 -->
