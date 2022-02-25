@@ -69,7 +69,7 @@ window.onload = () => {
 }
 //fetch取得本地json
 let getJSON = () => {
-    fetch("./prizeData.json").then((res) => {
+    fetch("./data/prizeData.json").then((res) => {
         return res.json();
     }).then((data) => {
         smallPrize = data.smallPrize;
@@ -94,6 +94,8 @@ let getJSON = () => {
 //使滾動條焦點在底部
 function scrollBar(){
     prizeText.scrollTop = prizeText.scrollHeight;
+    console.log("prizeText.scrollHeight : "+prizeText.scrollHeight)
+    console.log("prizeText.scrollTop : "+prizeText.scrollTop)
 }
 
 buyBtn.addEventListener("click", () => {
