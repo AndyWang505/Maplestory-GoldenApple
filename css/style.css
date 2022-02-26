@@ -1,5 +1,5 @@
 body{
-    background-image: url(/images/maxresdefault.jpg);
+    background-image: url(./images/maxresdefault.jpg);
     height: 100vh;
     background-position: center;
     background-size: cover;
