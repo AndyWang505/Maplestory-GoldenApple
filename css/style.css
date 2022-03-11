@@ -3,6 +3,11 @@ body{
     background-position: center;
     background-size: cover;
 }
+ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
 .flex{
     display: flex;
 }
@@ -91,6 +96,9 @@ header img{
 }
 .bgm{
     max-height: 30px;
+}
+.spinner-border{
+    display: none;
 }
 /* Phone */
 @media screen and (min-width:200px) and (max-width:680px) {

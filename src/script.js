@@ -94,8 +94,8 @@ let getJSON = () => {
 //使滾動條焦點在底部
 function scrollBar(){
     prizeText.scrollTop = prizeText.scrollHeight;
-    console.log("prizeText.scrollHeight : "+prizeText.scrollHeight)
-    console.log("prizeText.scrollTop : "+prizeText.scrollTop)
+    // console.log("prizeText.scrollHeight : "+prizeText.scrollHeight)
+    // console.log("prizeText.scrollTop : "+prizeText.scrollTop)
 }
 
 buyBtn.addEventListener("click", () => {
