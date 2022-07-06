@@ -38,15 +38,6 @@ let apples = 0,
     gourd = 0,
     count = 0,
     boxCount = 0,
-    allPrize = {},
-    smallPrize = [],//小獎1
-    smallPrize2 = [],//小獎2航海
-    bigPrize = [],//大獎池
-    normalbigPrize = [],//漆黑碎片
-    verybigPrize = {},//睿智葫蘆
-    superbigPrize = {},//輪迴碑石
-    goldboxPrize = [],//幸運的金色箱子
-    blackchipsPrize = [],//漆黑的BOSS飾品
     textId = 0,//移除捲軸溢出標籤的id
     spend = 0,//蘋果購買花費
     /* --漆黑飾品數-- */
@@ -59,7 +50,8 @@ let apples = 0,
     blackchips7 = 0,
     blackchips8 = 0,
     blackchips9 = 0,
-    blackchips10 = 0;
+    blackchips10 = 0,
+    tableData = {};
 
 
 //載入後優先取得json
@@ -72,20 +64,8 @@ let getJSON = () => {
     fetch("./data/prizeData.json").then((res) => {
         return res.json();
     }).then((data) => {
-        smallPrize = data.smallPrize;
-        smallPrize2 = data.smallPrize2;
-        bigPrize = data.bigPrize;
-        normalbigPrize = data.normalbigPrize;
-        verybigPrize = data.verybigPrize;
-        superbigPrize = data.superbigPrize;
-        goldboxPrize = data.goldboxPrize;
-        blackchipsPrize = data.blackchipsPrize;
-        // console.log(smallPrize);
-        // console.log(bigPrize);
-        // console.log(normalbigPrize);
-        // console.log(verybigPrize);
-        // console.log(superbigPrize);
-        // console.log(goldboxPrize);
+        tableData.apple = data.apple;
+        tableData.box = data.box;
     }).catch((err) => {
         console.log("getJSON error");
     })
@@ -153,8 +133,8 @@ openBtn.addEventListener("click", () => {
         alert("黃金蘋果數量不足，請確認數量是否足夠。");
     }else{
         prizeText.focus;
-        console.log("抽獎進行"+count+"次，剩"+apples);
         prizeDraw();
+        console.log("抽獎進行"+count+"次，剩"+apples);
         applesText.innerHTML = apples;
         applechipsText.innerHTML = appleChips;
         blackchipsText.innerHTML = blackChips;
@@ -165,50 +145,45 @@ openBtn.addEventListener("click", () => {
         scrollBar();
     }
 });
+
 //抽蘋果開獎
 function prizeDraw(){
     apples -= 1;
     appleChips += 1;
     count += 1;
     //100.00%
-    let probability = Math.round(Math.random()*10000);
-    if(probability <= 6){
-        //輪迴碑石0.06%
-        frenzyTotem += 1;
-        // console.log("最後獎勵為：" + superbigPrize.name);
-        prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${superbigPrize.name}</span>。</h6>`;
-        alert("恭喜從黃金蘋果機獲得【輪迴碑石】！ 第"+count+"抽");
-    }else if(probability <= 117){
-        //睿智葫蘆1.11%
-        gourd += 1;
-        // console.log("最後獎勵為：" + verybigPrize.name);
-        prizeText.innerHTML += `<h6 class="appleText" id="Id${textId+=1}">已獲得<span class="textPrize">${verybigPrize.name}</span> 道具1個。</h6>`;
-    }else if(probability <= 808){
-        //漆黑碎片(1) 6.91%
-        blackChips += 1;
-        // console.log("最後獎勵為：" + normalbigPrize.name);
-        prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${normalbigPrize.name}</span>。</h6>`;
-    }else if(probability <= 964){
-        //上廣獎 9.64% 採用 普通皮皮計算上廣機率https://www.youtube.com/watch?v=al8tnzHBBo0&ab_channel=%E6%99%AE%E9%80%9A%E7%9A%AE%E7%9A%AE
-        let bigPrizeLength = bigPrize.length-1;
-        let normalP = Math.round(Math.random() * bigPrizeLength);
-        // console.log(normalP);
-        // console.log("最後獎勵為：" + bigPrize[normalP].name);
-        prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${bigPrize[normalP].name}</span>。</h6>`;
-    }else if(probability <= 3964){
-        //小獎 30% 航海師裝備
-        let smallPrize2Length = bigPrize.length-1;
-        let smallP2  = Math.round(Math.random() * smallPrize2Length);
-        // console.log("最後獎勵為：" + smallPrize2[smallP2].name);
-        prizeText.innerHTML += `<h6 class="appleText" id="Id${textId+=1}">已獲得<span class="textPrize">${smallPrize2[smallP2].name}</span> 道具1個。</h6>`;
-    }else{
-        //一般獎勵
-        let smallPrizeLength = smallPrize.length-1;
-        let smallP  = Math.round(Math.random() * smallPrizeLength);
-        // console.log("最後獎勵為：" + smallPrize[smallP].name);
-        prizeText.innerHTML += `<h6 class="appleText" id="Id${textId+=1}">已獲得<span class="textPrize">${smallPrize[smallP].name}</span> 道具1個。</h6>`;
+    let probability = Math.random();
+    let total = 0;
+    for (let i = 0; i < tableData.apple.length; i++) {
+        let prize = tableData.apple[i];
+        if (probability >= total && probability <= total + prize.p) {
+            // yes, it's in range!
+            switch (prize.name) {
+                case "輪迴碑石":
+                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
+                    alert("恭喜從黃金蘋果機獲得【輪迴碑石】！ 第"+count+"抽");
+                    frenzyTotem += 1;
+                    break;
+                case "睿智葫蘆":
+                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
+                    gourd += 1;
+                    break;
+                case "漆黑的BOSS飾品碎片":
+                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
+                    blackChips += 1;
+                    break;
+                default:
+                    prizeText.innerHTML += `<h6 class="appleText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
+                    break;
+            }
+            break;
+        } else {
+            // not in range, going to next loop
+            total = total + prize.p;
+        }
     }
 }
+
 //一鍵抽
 drawallBtn.addEventListener("click", () => {
     if(apples === 0){
@@ -231,6 +206,7 @@ drawallBtn.addEventListener("click", () => {
         scrollBar();
     }
 });
+
 goldboxBtn.addEventListener("click", () => {
     if(appleChips === 0 || appleChips < 100){
         alert("黃金蘋果碎片數量不足，請確認數量是否足夠。")
@@ -241,30 +217,43 @@ goldboxBtn.addEventListener("click", () => {
         applechipsText.innerHTML = appleChips;
     }
 });
+
 openboxBtn.addEventListener("click", () => {
     if(goldBox === 0){
         alert("幸運的金色寶箱數量不足，請確認數量是否足夠。");
     }else{
-        let probability = Math.round(Math.random()*100);
-        if(probability <= 5){
-            //輪迴5%
-            frenzyTotem += 1;
-            // console.log("寶箱獎勵為：" + superbigPrize.name);
-            prizeText.innerHTML += `<h6 class="goldboxText" id="Id${textId+=1}">恭喜"你"從幸運的金色箱子機獲得<span class="textPrize">【${superbigPrize.name}】</span>。</h6>`;
-            alert("恭喜從黃金蘋果機獲得【輪迴碑石】！");
-        }else{
-            let goldboxPrizeLength = goldboxPrize.length-1
-            let goldboxP = Math.round(Math.random() * goldboxPrizeLength);
-            if(goldboxPrize[goldboxP].name == "漆黑的Boss飾品碎片(10)"){
-                blackChips += 10;
-            }else if(goldboxPrize[goldboxP].name == "漆黑的Boss飾品碎片(15)"){
-                blackChips += 15;
-            }else if(goldboxPrize[goldboxP].name == "漆黑的Boss飾品碎片(20)"){
-                blackChips += 20;
+        let probability =Math.random();
+
+        let total = 0;
+        for (let i = 0; i < tableData.box.length; i++) {
+            let prize = tableData.box[i];
+            if (probability >= total && probability <= total + prize.p) {
+                // yes, it's in range!
+                prizeText.innerHTML += `<h6 class="goldboxText" id="Id${textId+=1}">恭喜"你"從幸運的金色箱子機獲得<span class="textPrize">【${prize.name}】</span>。</h6>`;
+                switch (prize.name) {
+                    case "輪迴碑石":
+                        alert("恭喜從黃金蘋果機獲得【輪迴碑石】！");
+                        frenzyTotem += 1;
+                        break;
+                    case "漆黑的BOSS碎片*20":
+                        blackChips += 20;
+                        break;
+                    case "漆黑的BOSS碎片*15":
+                        blackChips += 15;
+                        break;
+                    case "漆黑的BOSS碎片*10":
+                        blackChips += 10;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            } else {
+                // not in range, going to next loop
+                total = total + prize.p;
             }
-            // console.log("寶箱獎勵為：" + goldboxPrize[goldboxP].name);
-            prizeText.innerHTML += `<h6 class="goldboxText" id="Id${textId+=1}">恭喜"你"從幸運的金色箱子機獲得<span class="textPrize">[${goldboxPrize[goldboxP].name}]</span>。</h6>`;
         }
+
         boxCount += 1;
         goldBox -= 1;
         blackchipsText.innerHTML = blackChips;
@@ -282,9 +271,9 @@ blackchipBtn.addEventListener("click", () => {
     }else{
         //漆黑的boss飾品機率相同，取隨機
         blackChips -= 50;
-        let blackchipsPLength = blackchipsPrize.length-1
+        let blackchipsPLength = tableData.blackchipsPrize.length-1
         let blackchipsP = Math.round(Math.random() * blackchipsPLength);
-        switch(blackchipsPrize[blackchipsP].name){
+        switch(tableData.blackchipsPrize[blackchipsP].name){
             case "口紅控制器標誌":
                 blackchips1 += 1;
                 break;
@@ -319,8 +308,8 @@ blackchipBtn.addEventListener("click", () => {
                 console.log("不符合")
                 break;
         }
-        // console.log("漆黑飾品獎勵為：" + blackchipsPrize[blackchipsP].name);
-        prizeText.innerHTML += `<h6 class="blackchipsText" id="Id${textId+=1}">從漆黑的BOSS飾品碎片中獲得<span class="textPrize">${blackchipsPrize[blackchipsP].name}</span>了。</h6>`;
+        // console.log("漆黑飾品獎勵為：" + tableData.blackchipsPrize[blackchipsP].name);
+        prizeText.innerHTML += `<h6 class="blackchipsText" id="Id${textId+=1}">從漆黑的BOSS飾品碎片中獲得<span class="textPrize">${tableData.blackchipsPrize[blackchipsP].name}</span>了。</h6>`;
         removeText();
         scrollBar();
     }
