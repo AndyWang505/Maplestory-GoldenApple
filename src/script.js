@@ -66,6 +66,7 @@ let getJSON = () => {
     }).then((data) => {
         tableData.apple = data.apple;
         tableData.box = data.box;
+        tableData.blackchipsPrize = data.blackchipsPrize;
     }).catch((err) => {
         console.log("getJSON error");
     })
@@ -153,10 +154,12 @@ function prizeDraw(){
     count += 1;
     //100.00%
     let probability = Math.random();
+    console.log(probability);//-
     let total = 0;
     for (let i = 0; i < tableData.apple.length; i++) {
         let prize = tableData.apple[i];
         if (probability >= total && probability <= total + prize.p) {
+            console.log(prize.p);//-
             // yes, it's in range!
             switch (prize.name) {
                 case "輪迴碑石":
@@ -164,13 +167,34 @@ function prizeDraw(){
                     alert("恭喜從黃金蘋果機獲得【輪迴碑石】！ 第"+count+"抽");
                     frenzyTotem += 1;
                     break;
-                case "睿智葫蘆":
-                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
-                    gourd += 1;
-                    break;
                 case "漆黑的BOSS飾品碎片":
                     prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
                     blackChips += 1;
+                    break;
+                case "神秘冥界武器變換箱":
+                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
+                    break;
+                case "神秘冥界防具變換箱":
+                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
+                    break;
+                case "星力16星強化卷軸":
+                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
+                    break;
+                case "星力15星強化卷軸":
+                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
+                    break;
+                case "星力14星強化卷軸":
+                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
+                    break;
+                case "鈦之心":
+                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
+                    break;
+                case "精靈之心":
+                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
+                    break;
+                case "睿智葫蘆":
+                    prizeText.innerHTML += `<h6 class="appleText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
+                    gourd += 1;
                     break;
                 default:
                     prizeText.innerHTML += `<h6 class="appleText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
@@ -191,9 +215,7 @@ drawallBtn.addEventListener("click", () => {
     }else{
         alert("抽取較大的量需要時間計算，請稍等一下『廣頻』及『道具欄』更新。");
         let k = apples;
-        for(let j=0;j<k;j++){
-            // console.log("j="+j)
-            // console.log("a="+k)
+        for (let j=0; j<k; j++){
             prizeDraw();
             removeText();
         }
@@ -217,7 +239,7 @@ goldboxBtn.addEventListener("click", () => {
         applechipsText.innerHTML = appleChips;
     }
 });
-
+//幸運的金色箱子開獎
 openboxBtn.addEventListener("click", () => {
     if(goldBox === 0){
         alert("幸運的金色寶箱數量不足，請確認數量是否足夠。");
@@ -265,10 +287,12 @@ openboxBtn.addEventListener("click", () => {
         scrollBar();
     }
 });
+//兌換漆黑碎片
 blackchipBtn.addEventListener("click", () => {
     if(blackChips === 0 || blackChips < 50){
         alert("漆黑的BOSS飾品碎片數量不足，請確認數量是否足夠。");
     }else{
+        console.log(tableData);
         //漆黑的boss飾品機率相同，取隨機
         blackChips -= 50;
         let blackchipsPLength = tableData.blackchipsPrize.length-1
@@ -305,7 +329,6 @@ blackchipBtn.addEventListener("click", () => {
                 blackchips10 += 1;
                 break
             default:
-                console.log("不符合")
                 break;
         }
         // console.log("漆黑飾品獎勵為：" + tableData.blackchipsPrize[blackchipsP].name);
