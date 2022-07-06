@@ -64,8 +64,7 @@ let getJSON = () => {
     fetch("./data/prizeData.json").then((res) => {
         return res.json();
     }).then((data) => {
-        tableData.apple = data.apple;
-        tableData.box = data.box;
+        tableData = data;
     }).catch((err) => {
         console.log("getJSON error");
     })
