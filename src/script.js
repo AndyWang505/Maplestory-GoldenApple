@@ -64,9 +64,7 @@ let getJSON = () => {
     fetch("./data/prizeData.json").then((res) => {
         return res.json();
     }).then((data) => {
-        tableData.apple = data.apple;
-        tableData.box = data.box;
-        tableData.blackchipsPrize = data.blackchipsPrize;
+        tableData = data;
     }).catch((err) => {
         console.log("getJSON error");
     })
@@ -154,12 +152,10 @@ function prizeDraw(){
     count += 1;
     //100.00%
     let probability = Math.random();
-    console.log(probability);//-
     let total = 0;
     for (let i = 0; i < tableData.apple.length; i++) {
         let prize = tableData.apple[i];
         if (probability >= total && probability <= total + prize.p) {
-            console.log(prize.p);//-
             // yes, it's in range!
             switch (prize.name) {
                 case "輪迴碑石":
@@ -292,7 +288,6 @@ blackchipBtn.addEventListener("click", () => {
     if(blackChips === 0 || blackChips < 50){
         alert("漆黑的BOSS飾品碎片數量不足，請確認數量是否足夠。");
     }else{
-        console.log(tableData);
         //漆黑的boss飾品機率相同，取隨機
         blackChips -= 50;
         let blackchipsPLength = tableData.blackchipsPrize.length-1
