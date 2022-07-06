@@ -193,7 +193,7 @@ function prizeDraw(){
                     gourd += 1;
                     break;
                 default:
-                    prizeText.innerHTML += `<h6 class="appleText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
+                    prizeText.innerHTML += `<h6 class="appleText" id="Id${textId+=1}">已獲得<span class="textPrize">${prize.name}</span>道具 1 個。</h6>`;
                     break;
             }
             break;
