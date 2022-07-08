@@ -132,7 +132,7 @@ openBtn.addEventListener("click", () => {
         alert("黃金蘋果數量不足，請確認數量是否足夠。");
     }else{
         prizeText.focus;
-        prizeDraw();
+        prizeDraw(0);
         console.log("抽獎進行"+count+"次，剩"+apples);
         applesText.innerHTML = apples;
         applechipsText.innerHTML = appleChips;
@@ -146,7 +146,7 @@ openBtn.addEventListener("click", () => {
 });
 
 //抽蘋果開獎
-function prizeDraw(){
+function prizeDraw(dontshow){
     apples -= 1;
     appleChips += 1;
     count += 1;
@@ -157,44 +157,43 @@ function prizeDraw(){
         let prize = tableData.apple[i];
         if (probability >= total && probability <= total + prize.p) {
             // yes, it's in range!
+            let showWithColor = 1;
             switch (prize.name) {
                 case "輪迴碑石":
-                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
                     alert("恭喜從黃金蘋果機獲得【輪迴碑石】！ 第"+count+"抽");
                     frenzyTotem += 1;
                     break;
                 case "漆黑的BOSS飾品碎片":
-                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
                     blackChips += 1;
                     break;
                 case "神秘冥界武器變換箱":
-                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
                     break;
                 case "神秘冥界防具變換箱":
-                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
                     break;
                 case "星力16星強化卷軸":
-                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
                     break;
                 case "星力15星強化卷軸":
-                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
                     break;
                 case "星力14星強化卷軸":
-                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
                     break;
                 case "鈦之心":
-                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
                     break;
                 case "精靈之心":
-                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
                     break;
                 case "睿智葫蘆":
-                    prizeText.innerHTML += `<h6 class="appleText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
+                    showWithColor = 0;
                     gourd += 1;
                     break;
                 default:
-                    prizeText.innerHTML += `<h6 class="appleText" id="Id${textId+=1}">已獲得<span class="textPrize">${prize.name}</span>道具 1 個。</h6>`;
+                    showWithColor = 0;
                     break;
+            }
+            if(dontshow == 0) {
+                if(showWithColor) {
+                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
+                } else {
+                    prizeText.innerHTML += `<h6 class="appleText" id="Id${textId+=1}">已獲得<span class="textPrize">${prize.name}</span>道具 1 個。</h6>`;
+                }
             }
             break;
         } else {
@@ -206,13 +205,18 @@ function prizeDraw(){
 
 //一鍵抽
 drawallBtn.addEventListener("click", () => {
+    let maxShowLines = 30;
     if(apples === 0){
         alert("黃金蘋果數量不足，請確認數量是否足夠。");
     }else{
         alert("抽取較大的量需要時間計算，請稍等一下『廣頻』及『道具欄』更新。");
         let k = apples;
         for (let j=0; j<k; j++){
-            prizeDraw();
+            if(k - j <= maxShowLines) {
+                prizeDraw(0);
+            } else {
+                prizeDraw(1);				
+            }
             removeText();
         }
         applesText.innerHTML = apples;
