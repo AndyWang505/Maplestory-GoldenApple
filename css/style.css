@@ -1,5 +1,7 @@
 body{
+    background-image: url(../images/maxresdefault.jpg);
     height: 100vh;
+    background-attachment: fixed;
     background-position: center;
     background-size: cover;
 }
