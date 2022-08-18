@@ -17,16 +17,21 @@ ul{
     display: flex;
     justify-content: space-between;
 }
-h5{
+p{
     margin-right: 15px;
+    font-size: 18px;
 }
-h6{
+h2{
     margin: 0;
+    font-size: 16px;
 }
 header{
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
+}
+header h1{
+    display: none;
 }
 .wrap{
     margin: auto;
@@ -112,7 +117,7 @@ header img{
 }
 /* Phone iPad */
 @media screen and (min-width:200px) and (max-width:767px) {
-    h5{
+    p{
         font-size: 16px;
         margin-right: 5px;
     }
