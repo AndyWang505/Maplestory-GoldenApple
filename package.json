@@ -1,0 +1,27 @@
+{
+  "name": "goldenapple",
+  "version": "1.0.0",
+  "description": "simulation goldenapple",
+  "main": "index.html",
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndyWang505/Maplestory-GoldenApple.git"
+  },
+  "keywords": [
+    "maplestory",
+    "goldenapple"
+  ],
+  "author": "andywang505/weiwei",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndyWang505/Maplestory-GoldenApple/issues"
+  },
+  "homepage": "https://github.com/AndyWang505/Maplestory-GoldenApple#readme",
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.0"
+  }
+}
