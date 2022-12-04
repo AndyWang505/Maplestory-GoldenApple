@@ -61,7 +61,7 @@ window.onload = () => {
 }
 //fetch取得本地json
 let getJSON = () => {
-    fetch("../public/data/prizeData.json").then((res) => {
+    fetch("./../public/data/prizeData.json").then((res) => {
         return res.json();
     }).then((data) => {
         tableData = data;
