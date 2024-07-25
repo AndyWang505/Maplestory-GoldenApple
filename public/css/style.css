@@ -1,54 +1,83 @@
-body{
+body {
     background-image: url(../images/maxresdefault.jpg);
-    height: 100vh;
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
+    font-size: .875rem;
 }
-ul{
+
+header {
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto 30px auto;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+footer {
+    margin-top: 3rem;
+    padding: 0.7rem 1rem 0.7rem;
+    text-align: center;
+    color: rgb(211, 211, 211);
+}
+
+footer a {
+    color: blueviolet;
+    text-decoration: none;
+}
+
+ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
-.flex{
+
+.flex {
     display: flex;
 }
-.flex-space-between{
+
+.flex-space-between {
     display: flex;
     justify-content: space-between;
 }
-p{
+
+p {
     margin-right: 15px;
     font-size: 18px;
 }
-h2{
+
+h2 {
     margin: 0;
     font-size: 16px;
 }
-header{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-}
-header h1{
+
+header h1 {
     display: none;
 }
-.wrap{
-    margin: auto;
-    max-width: 1200px;
-    height: auto;
+
+.wrap {
+
+    margin: 0 auto;
 }
-header img{
+
+header img {
     width: 50%;
     height: 260px;
 }
-.apple1{
+
+.apple1 {
     width: 16%;
 }
-.apple2{
+
+.apple2 {
     width: 32%;
 }
-.prize{
+
+.prize {
     border-radius: 5px;
     width: 100%;
     height: 350px;
@@ -57,19 +86,23 @@ header img{
     border: 2px solid #b4b4b4;
     background-color: rgba(0, 0, 0, 0.5);
 }
+
 #prize::-webkit-scrollbar-track {
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: #ffc0cb;
-  }
+}
+
 #prize::-webkit-scrollbar {
     width: 8px;
     background-color: black;
-  }
+}
+
 #prize::-webkit-scrollbar-thumb {
     border-radius: 5px;
     background-color: #bb6573;
 }
-.props{
+
+.props {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #b4b4b4;
@@ -77,77 +110,121 @@ header img{
     color: rgb(230, 230, 230);
     font-weight: bold;
 }
-.appleBigprizeText{
+
+.appleBigprizeText {
     background-color: rgb(228, 228, 39);
     margin: 0;
 }
-.appleText{
+
+.appleText {
     color: rgb(177, 177, 177);
     margin: 0;
 }
-.goldboxText{
+
+.goldboxText {
     color: rgb(185, 180, 223);
     margin: 0;
 }
-.blackchipsText{
+
+.blackchipsText {
     color: rgb(230, 230, 230);
     margin: 0;
 }
-.textPrize{
+
+.textPrize {
     color: rgb(194, 125, 255);
     font-weight: bold;
 }
-.btn{
+
+.btn {
     margin-top: 15px;
 }
-.formImg{
+
+.formImg {
     width: 50px;
     height: 50px;
 }
-.bgm{
+
+.bgm {
     max-height: 30px;
 }
-.spinner-border{
+
+.bgm-icon {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    display: flex;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: whitesmoke;
+}
+
+.music-pause {
     display: none;
 }
-@media (max-width: 1690px){
-    header{
+
+.music-play {
+    display: block;
+}
+
+.spinner-border {
+    display: none;
+}
+
+@media (max-width: 1690px) {
+    header {
         margin-bottom: 0;
     }
 }
+
 /* Phone iPad */
 @media screen and (min-width:200px) and (max-width:767px) {
-    p{
-        font-size: 16px;
+    p {
         margin-right: 5px;
     }
-    header{
+
+    footer {
+        bottom: 0;
+        width: 100%;
+    }
+
+    header {
         display: block;
         margin-bottom: 0;
     }
-    header img{
+
+    header img {
         width: 100%;
     }
-    .apple1{
+
+    .apple1 {
         display: none;
     }
-    .apple2{
+
+    .apple2 {
         display: none;
     }
-    .formImg{
+
+    .formImg {
         width: 25px;
         height: 25px;
     }
-    .bgm{
+
+    .bgm {
         display: none;
     }
-    .btn{
+
+    .btn {
         font-size: 12px;
     }
-    .prize{
+
+    .prize {
         max-height: 250px;
     }
-    .flex-space-between{
+
+    .flex-space-between {
         display: block;
     }
 }

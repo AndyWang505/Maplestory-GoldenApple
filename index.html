@@ -94,10 +94,53 @@
                 <!-- 廣頻 -->
             </div>
         </main>
+        <footer>
+            Copyright © 2022 - AndyWang505．<a href="https://github.com/AndyWang505/Maplestory-GoldenApple" target="_blank">source</a>
+        </footer>
+        <button type="button" class="bgm-icon" id="bgm-icon">
+            <img class="music-play" id="music-play" src="./public/images/music-player.svg" style="width: 16px; height: 16px;" alt="">
+            <img class="music-pause" id="music-pause" src="./public/images/music-pause.svg" style="width: 16px; height: 16px;" alt="">
+        </button>
     </div>
+    
     <!-- BGM -->
-    <audio class="bgm" src="[MapleStory BGM] Grand Athenaeum Evening Primrose.mp3" autoplay controls loop="true"></audio>
+    <audio class="bgm" id="bgm" src="[MapleStory BGM] Grand Athenaeum Evening Primrose.mp3" autoplay loop="true"></audio>
     <script type="text/javascript" src="./bundle.js"></script>
     <!-- <script type="text/javascript" src="prizeData.json"></script> -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const bgmIcon = document.getElementById('bgm-icon');
+        const musicPlay = document.getElementById('music-play');
+        const musicPause = document.getElementById('music-pause');
+        const audio = document.getElementById('bgm');
+
+        // 確保在頁面加載時自動播放音樂
+        audio.play().catch(error => {
+            console.log('Auto-play was prevented:', error);
+        });
+
+        bgmIcon.addEventListener('click', () => {
+            if (audio.paused) {
+            audio.play();
+            musicPlay.style.display = "none";
+            musicPause.style.display = "block";
+            } else {
+            audio.pause();
+            musicPlay.style.display = "block";
+            musicPause.style.display = "none";
+            }
+        });
+
+        // 初始化圖標顯示狀態
+        if (audio.paused) {
+            musicPlay.style.display = "block";
+            musicPause.style.display = "none";
+        } else {
+            musicPlay.style.display = "none";
+            musicPause.style.display = "block";
+        }
+        });
+    </script>
 </body>
 </html>

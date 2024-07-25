@@ -53,7 +53,6 @@ let apples = 0,
     blackchips10 = 0,
     tableData = {};
 
-
 //載入後優先取得json
 window.onload = () => {
     getJSON();
@@ -71,7 +70,7 @@ let getJSON = () => {
 }
 
 //使滾動條焦點在底部
-function scrollBar(){
+function scrollBar() {
     prizeText.scrollTop = prizeText.scrollHeight;
     // console.log("prizeText.scrollHeight : "+prizeText.scrollHeight)
     // console.log("prizeText.scrollTop : "+prizeText.scrollTop)
@@ -128,12 +127,12 @@ resetBtn.addEventListener("click", () => {
 });
 
 openBtn.addEventListener("click", () => {
-    if(apples === 0){
+    if (apples === 0) {
         alert("黃金蘋果數量不足，請確認數量是否足夠。");
-    }else{
+    } else {
         prizeText.focus;
         prizeDraw(0);
-        console.log("抽獎進行"+count+"次，剩"+apples);
+        console.log("抽獎進行" + count + "次，剩" + apples);
         applesText.innerHTML = apples;
         applechipsText.innerHTML = appleChips;
         blackchipsText.innerHTML = blackChips;
@@ -146,7 +145,7 @@ openBtn.addEventListener("click", () => {
 });
 
 //抽蘋果開獎
-function prizeDraw(dontshow){
+function prizeDraw(dontshow) {
     apples -= 1;
     appleChips += 1;
     count += 1;
@@ -160,7 +159,7 @@ function prizeDraw(dontshow){
             let showWithColor = 1;
             switch (prize.name) {
                 case "輪迴碑石":
-                    alert("恭喜從黃金蘋果機獲得【輪迴碑石】！ 第"+count+"抽");
+                    alert("恭喜從黃金蘋果機獲得【輪迴碑石】！ 第" + count + "抽");
                     frenzyTotem += 1;
                     break;
                 case "漆黑的BOSS飾品碎片":
@@ -188,11 +187,11 @@ function prizeDraw(dontshow){
                     showWithColor = 0;
                     break;
             }
-            if(dontshow == 0) {
-                if(showWithColor) {
-                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId+=1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
+            if (dontshow == 0) {
+                if (showWithColor) {
+                    prizeText.innerHTML += `<h6 class="appleBigprizeText" id="Id${textId += 1}">恭喜"你"從黃金蘋果機獲得<span class="textPrize">${prize.name}</span>。</h6>`;
                 } else {
-                    prizeText.innerHTML += `<h6 class="appleText" id="Id${textId+=1}">已獲得<span class="textPrize">${prize.name}</span>道具 1 個。</h6>`;
+                    prizeText.innerHTML += `<h6 class="appleText" id="Id${textId += 1}">已獲得<span class="textPrize">${prize.name}</span>道具 1 個。</h6>`;
                 }
             }
             break;
@@ -206,16 +205,16 @@ function prizeDraw(dontshow){
 //一鍵抽
 drawallBtn.addEventListener("click", () => {
     let maxShowLines = 30;
-    if(apples === 0){
+    if (apples === 0) {
         alert("黃金蘋果數量不足，請確認數量是否足夠。");
-    }else{
+    } else {
         alert("抽取較大的量需要時間計算，請稍等一下『廣頻』及『道具欄』更新。");
         let k = apples;
-        for (let j=0; j<k; j++){
-            if(k - j <= maxShowLines) {
+        for (let j = 0; j < k; j++) {
+            if (k - j <= maxShowLines) {
                 prizeDraw(0);
             } else {
-                prizeDraw(1);				
+                prizeDraw(1);
             }
             removeText();
         }
@@ -230,9 +229,9 @@ drawallBtn.addEventListener("click", () => {
 });
 
 goldboxBtn.addEventListener("click", () => {
-    if(appleChips === 0 || appleChips < 100){
+    if (appleChips === 0 || appleChips < 100) {
         alert("黃金蘋果碎片數量不足，請確認數量是否足夠。")
-    }else if(appleChips >= 100){
+    } else if (appleChips >= 100) {
         appleChips -= 100;
         goldBox += 1;
         goldboxText.innerHTML = goldBox;
@@ -241,17 +240,17 @@ goldboxBtn.addEventListener("click", () => {
 });
 //幸運的金色箱子開獎
 openboxBtn.addEventListener("click", () => {
-    if(goldBox === 0){
+    if (goldBox === 0) {
         alert("幸運的金色寶箱數量不足，請確認數量是否足夠。");
-    }else{
-        let probability =Math.random();
+    } else {
+        let probability = Math.random();
 
         let total = 0;
         for (let i = 0; i < tableData.box.length; i++) {
             let prize = tableData.box[i];
             if (probability >= total && probability <= total + prize.p) {
                 // yes, it's in range!
-                prizeText.innerHTML += `<h6 class="goldboxText" id="Id${textId+=1}">恭喜"你"從幸運的金色箱子機獲得<span class="textPrize">【${prize.name}】</span>。</h6>`;
+                prizeText.innerHTML += `<h6 class="goldboxText" id="Id${textId += 1}">恭喜"你"從幸運的金色箱子機獲得<span class="textPrize">【${prize.name}】</span>。</h6>`;
                 switch (prize.name) {
                     case "輪迴碑石":
                         alert("恭喜從黃金蘋果機獲得【輪迴碑石】！");
@@ -289,14 +288,14 @@ openboxBtn.addEventListener("click", () => {
 });
 //兌換漆黑碎片
 blackchipBtn.addEventListener("click", () => {
-    if(blackChips === 0 || blackChips < 50){
+    if (blackChips === 0 || blackChips < 50) {
         alert("漆黑的BOSS飾品碎片數量不足，請確認數量是否足夠。");
-    }else{
+    } else {
         //漆黑的boss飾品機率相同，取隨機
         blackChips -= 50;
-        let blackchipsPLength = tableData.blackchipsPrize.length-1
+        let blackchipsPLength = tableData.blackchipsPrize.length - 1
         let blackchipsP = Math.round(Math.random() * blackchipsPLength);
-        switch(tableData.blackchipsPrize[blackchipsP].name){
+        switch (tableData.blackchipsPrize[blackchipsP].name) {
             case "口紅控制器標誌":
                 blackchips1 += 1;
                 break;
@@ -331,7 +330,7 @@ blackchipBtn.addEventListener("click", () => {
                 break;
         }
         // console.log("漆黑飾品獎勵為：" + tableData.blackchipsPrize[blackchipsP].name);
-        prizeText.innerHTML += `<h6 class="blackchipsText" id="Id${textId+=1}">從漆黑的BOSS飾品碎片中獲得<span class="textPrize">${tableData.blackchipsPrize[blackchipsP].name}</span>了。</h6>`;
+        prizeText.innerHTML += `<h6 class="blackchipsText" id="Id${textId += 1}">從漆黑的BOSS飾品碎片中獲得<span class="textPrize">${tableData.blackchipsPrize[blackchipsP].name}</span>了。</h6>`;
         removeText();
         scrollBar();
     }
@@ -349,9 +348,9 @@ blackchipBtn.addEventListener("click", () => {
     blackchips10Text.innerHTML = blackchips10;
 });
 //捲軸範圍超過scrollHeight時移除溢出的標籤
-function removeText(){
-    if(prizeText.scrollHeight > 1921){
-        let removeId = textId-100
-        document.getElementById("Id"+removeId).remove();
+function removeText() {
+    if (prizeText.scrollHeight > 1921) {
+        let removeId = textId - 100
+        document.getElementById("Id" + removeId).remove();
     }
 }
